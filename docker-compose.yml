@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    container_name: charlesmartino
+    restart: always
+    build: .
+    ports:
+      - "8080:8000"
+    links:
+      - mongo
+      - redis
+  mongo:
+    container_name: mongo
+    image: "mongo:4"
+    ports:
+      - "27018:27017"
+  redis:
+    container_name: redis
+    image: "redis:4.0.11"
