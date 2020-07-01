@@ -11,7 +11,7 @@ router.post("/sign-in/", (req, res) => {
     if (user) {
       const token = jwt.sign({ userName }, JWT_KEY, {
         algorithm: "HS256",
-        expiresIn: JWT_EXPIRY_SECONDS,
+        expiresIn: JWT_EXPIRY_SECONDS * 1000,
       });
 
       res.send({
