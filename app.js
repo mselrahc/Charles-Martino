@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const User = require("./models/User");
 require("dotenv").config();
 
 const mongoose = require("mongoose");
@@ -14,6 +15,14 @@ mongoose.connect(url, {
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
+
+const user = new User({
+  userName: "charles",
+  accountNumber: "8924734435",
+  emailAddress: "charles@mail.com",
+  identityNumber: "040599045239",
+});
+user.save();
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");

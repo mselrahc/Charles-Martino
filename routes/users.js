@@ -6,9 +6,9 @@ const User = require("../models/User");
 
 const redis = require("redis");
 
-const portRedis = process.env.PORT || 6379;
+const portRedis = process.env.PORT || process.env.REDIS_PORT;
 const cacheExpire = 600;
-const redisClient = redis.createClient(portRedis);
+const redisClient = redis.createClient(portRedis, process.env.REDIS_HOST);
 
 checkCache = (req, res, next) => {
   const { id } = req.params;

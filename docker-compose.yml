@@ -3,9 +3,13 @@ services:
   app:
     container_name: charlesmartino
     restart: always
-    build: .
+    build:
+      context: .
+      args:
+        - MONGO_URL=mongodb://mongo:27017/charlesmartino
+        - REDIS_HOST=redis
     ports:
-      - "8080:8000"
+      - "3000:3000"
     links:
       - mongo
       - redis
@@ -17,3 +21,5 @@ services:
   redis:
     container_name: redis
     image: "redis:4.0.11"
+    ports:
+      - "6379:6379"
